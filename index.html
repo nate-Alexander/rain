@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>rain</title>
+	<style>
+   body,html{
+   	width: 100%;
+   	height: 100%;
+   	background:#333;
+   	padding: 0;
+   	margin:0;
+   	overflow: hidden;
+   }
+
+	</style>
+</head>
+<body>
+	
+</body>
+
+</html>
+<script>
+var cw=document.documentElement.clientWidth;
+var ch=document.documentElement.clientHeight;
+var rian=[];
+function createRain(){
+	for(var i=0;i<800;i++){
+	var divs=document.createElement('div');
+	divs.style.cssText='width:1px;height:10px;background:#fff;position:absolute;left:'+(50+Math.random()*(cw-100))+'px;top:-10px;transition:transform 2s ease-in '+Math.random()*5+'s';
+	rian.push(divs);
+	document.body.appendChild(divs);
+	}
+
+}
+createRain();
+setTimeout(function(){
+	for(var i=0;i<rian.length;i++){
+	rian[i].style.transform="translateY("+(ch)+"px)";
+	rian[i].addEventListener('transitionend',remove)
+	function remove(){
+       // this.style.display="none";
+        this.style.transition="none";
+		this.style.transform="translateY(0)";
+		var that=this;
+		// that.style.display='block';
+	setTimeout(function(){
+		that.style.transition="transform 3s ease-in "+Math.random()*5+'s';
+		that.style.transform="translateY("+(ch)+"px)";
+	},0)	
+         
+	
+
+	}
+	
+	}
+},0);
+</script>
